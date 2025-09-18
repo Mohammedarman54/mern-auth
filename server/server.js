@@ -16,7 +16,7 @@ connectDB();
 // ✅ Allowed origins (local + Vercel frontend)
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://mern-auth-ek5u35mep-mohammed-arman-alis-projects.vercel.app"
+  "https://mern-auth-ek5u35mep-mohammed-arman-alis-projects.vercel.app", 
 ];
 
 // Middlewares
@@ -30,6 +30,7 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true); // ✅ must return true, not origin string
       } else {
+        console.log("Blocked by CORS:",origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
