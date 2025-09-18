@@ -16,7 +16,8 @@ connectDB();
 // ✅ Allowed origins (local + Vercel frontend)
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://mern-auth-ek5u35mep-mohammed-arman-alis-projects.vercel.app", 
+  // "https://mern-auth-ek5u35mep-mohammed-arman-alis-projects.vercel.app", 
+  process.env.FRONTEND_URL
 ];
 
 // Middlewares
