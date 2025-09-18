@@ -13,28 +13,34 @@ const port = process.env.PORT || 4000;
 // connect DB
 connectDB();
 
-// allowed origins
-const allowedOrigins = ['http://localhost:5173'];
+// ✅ Allowed origins (local + Vercel frontend)
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "https://mern-auth-ek5u35mep-mohammed-arman-alis-projects.vercel.app"
+];
 
+// Middlewares
 app.use(express.json());
 app.use(cookieParser());
 
 // ✅ Proper CORS setup
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, origin);   // allow request
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, origin); // allow the request origin
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
-// routes
-app.get('/', (req, res) => res.send("Api working fine"));
-app.use('/api/auth', authRouter);
-app.use('/api/user', userRouter);
+// Routes
+app.get("/", (req, res) => res.send("API working fine"));
+app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
 
-// server start
-app.listen(port, () => console.log(`Server started on port : ${port}`));
+// Start server
+app.listen(port, () => console.log(Server started on port : ${port}));
